@@ -88,3 +88,53 @@ const joined_countdown = (countdown_time, countdown_id, language) => {
         }
     }, 1000);
 }
+
+/**
+ * a function to generate a random string
+ * @param length the length of the random string
+ * @param flag
+ * 1-get only lower-case letters string,
+ * 2-get only capital letters string,
+ * 3-get only letter string, 
+ * 4-get numeric string,
+ * 5-get a string is made up of lower-case letters and numbers,
+ * 6-get a string is made up of capital letters and numbers,
+ * otherwise you will get a string is made up of case letters and numbers
+ * @stone
+ */
+const get_random_string = (length, flag) => {
+    const lower_case_letters = 'abcdefghijklmnopqrstuvwxyz';
+    const capital_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numbers = '0123456789';
+    let candidate_characters = '';
+    switch (flag) {
+        case 1:
+            candidate_characters = lower_case_letters;
+            break;
+        case 2:
+            candidate_characters = capital_letters;
+            break;
+        case 3:
+            candidate_characters = lower_case_letters+capital_letters;
+            break;
+        case 4:
+            candidate_characters = numbers;
+            break;
+        case 5:
+            candidate_characters = lower_case_letters+numbers;
+            break;
+        case 6:
+            candidate_characters = capital_letters+numbers;
+            break;
+        default:
+            candidate_characters = lower_case_letters+capital_letters+numbers;
+            break;
+    }
+
+    let result_string = '';
+    for (let i = 0;i < length;i++) {
+        result_string += candidate_characters.charAt(Math.floor(Math.random() * candidate_characters.length));
+    }
+
+    return result_string;
+}

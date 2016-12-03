@@ -10,10 +10,11 @@
  * @param minute_id the id of ths minutes element for countdown
  * @param hour_id the id of the hours element for countdown
  * @param day_id the id of the days element for countdown
+ * return timeoutID a numeric, non-zero value which identifies the timer created by the call to setInterval()
  * @stone
  */
-const separated_countdown = (countdown_time, second_id, minute_id, hour_id, day_id) => {
-    return setInterval(() => {
+const separated_countdown = (countdown_time, second_id, minute_id, hour_id, day_id, callback) => {
+    let countdown_interval = setInterval(() => {
         if (countdown_time > 0) {
             const days = Math.floor(countdown_time / 86400);
             const hours = Math.floor(countdown_time / 3600 - days * 24);
@@ -31,8 +32,14 @@ const separated_countdown = (countdown_time, second_id, minute_id, hour_id, day_
                 document.getElementById(day_id).innerHTML = days;
             }
             countdown_time--;
+        } else {
+            if (callback) {
+                callback();
+            }
+            clearInterval(countdown_interval);
         }
     }, 1000);
+    return countdown_interval;
 }
 
 /**
@@ -41,10 +48,12 @@ const separated_countdown = (countdown_time, second_id, minute_id, hour_id, day_
  * @param countdown_id the id of the element for countdown
  * @param language the language for countdown to show
  * @param title the text decorated for countdown
+ * @param callback the callback function for countdown
+ * return timeoutID a numeric, non-zero value which identifies the timer created by the call to setInterval()
  * @stone
  */
-const joined_countdown = (countdown_time, countdown_id, language, title) => {
-    return setInterval(() => {
+const joined_countdown = (countdown_time, countdown_id, language, title, callback) => {
+    let countdown_interval = setInterval(() => {
         if (countdown_time > 0) {
             const days = Math.floor(countdown_time / 86400);
             const hours = Math.floor(countdown_time / 3600 - days * 24);
@@ -86,8 +95,14 @@ const joined_countdown = (countdown_time, countdown_id, language, title) => {
             document.getElementById(countdown_id).innerHTML = title + countdown_info;
 
             countdown_time--;
+        } else {
+            if (callback) {
+                callback();
+            }
+            clearInterval(countdown_interval);
         }
     }, 1000);
+    return countdown_interval;
 }
 
 /**

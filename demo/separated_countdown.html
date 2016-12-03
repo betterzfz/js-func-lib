@@ -6,5 +6,7 @@
 </p>
 <script src="../library/common-functions.js" type="text/javascript"></script>
 <script type="text/javascript">
-    separated_countdown(2500, 'second', 'minute', 'hour', 'day');
+    separated_countdown(3, 'second', 'minute', 'hour', 'day', () => {
+        console.log('ok');
+    });
 </script>

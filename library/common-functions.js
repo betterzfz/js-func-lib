@@ -40,9 +40,10 @@ const separated_countdown = (countdown_time, second_id, minute_id, hour_id, day_
  * @param countdown_time the seconds to countdown
  * @param countdown_id the id of the element for countdown
  * @param language the language for countdown to show
+ * @param title the text decorated for countdown
  * @stone
  */
-const joined_countdown = (countdown_time, countdown_id, language) => {
+const joined_countdown = (countdown_time, countdown_id, language, title) => {
     return setInterval(() => {
         if (countdown_time > 0) {
             const days = Math.floor(countdown_time / 86400);
@@ -82,7 +83,7 @@ const joined_countdown = (countdown_time, countdown_id, language) => {
             if (seconds > 0) {
                 countdown_info += seconds + second_label;
             }
-            document.getElementById(countdown_id).innerHTML = countdown_info;
+            document.getElementById(countdown_id).innerHTML = title + countdown_info;
 
             countdown_time--;
         }
